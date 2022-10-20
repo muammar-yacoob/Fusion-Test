@@ -7,11 +7,8 @@ public class PlayerSpawner : NetworkBehaviour, IPlayerJoined, IPlayerLeft
     private NetworkObject playerObject;
 
     public void PlayerJoined(PlayerRef player)
-    {
-        if (Runner.IsServer)
-        {
-            playerObject = Runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, player);
-        }
+    { 
+        playerObject = Runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, player);
     }
 
     public void PlayerLeft(PlayerRef player)

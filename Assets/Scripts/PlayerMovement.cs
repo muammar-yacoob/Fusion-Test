@@ -10,12 +10,9 @@ public class PlayerMovement : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
-        //if (!Object.HasInputAuthority) return;
-        
         if (GetInput(out NetData netData))
         {
-            //print($"Receiving: {netData.direction}");
-            transform.Translate(netData.direction * moveSpeed * Runner.DeltaTime);
+            transform.Translate(netData.direction.normalized * Runner.DeltaTime);
         }
     }
 }

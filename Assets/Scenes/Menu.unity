@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 119298383}
   - component: {fileID: 119298384}
   - component: {fileID: 119298382}
-  - component: {fileID: 119298385}
   m_Layer: 0
   m_Name: '[ Spawner ]'
   m_TagString: Untagged
@@ -187,7 +186,7 @@ MonoBehaviour:
   ObjectInterest: 1
   DefaultInterestGroups: []
   DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
+  AllowStateAuthorityOverride: 0
   AoiPositionSource: {fileID: 0}
   Flags: 2561
   NetworkGuid:
@@ -195,22 +194,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 119298382}
-  - {fileID: 119298385}
   SimulationBehaviours: []
---- !u!114 &119298385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119298381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed58548fd11b5794c8fca96d428a088e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  playerColors: []
 --- !u!1 &144118350
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,6 +516,7 @@ GameObject:
   - component: {fileID: 2085320905}
   - component: {fileID: 2085320904}
   - component: {fileID: 2085320907}
+  - component: {fileID: 2085320908}
   m_Layer: 0
   m_Name: '[ Runner Manager ]'
   m_TagString: Untagged
@@ -592,6 +577,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowHierarchyWindowOverlay: 1
   PostLoadDelayFrames: 1
+--- !u!114 &2085320908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085320903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: b10da444afdd42c396adbcd7521a35f7
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours: []
 --- !u!1 &2139807706
 GameObject:
   m_ObjectHideFlags: 0

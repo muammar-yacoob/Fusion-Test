@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Animations;
 
 [RequireComponent(typeof(NetworkObject))]
 public class InputProvider : NetworkBehaviour, INetworkRunnerCallbacks
 {
     //Action Map type/asset is Hardcoded for now.
     private SimpleControls _playerActionMap;
+    private float localX,localZ;
 
     public void Start() //this has to be Start, you can't do it on OnEnable :(
     {
@@ -26,19 +27,23 @@ public class InputProvider : NetworkBehaviour, INetworkRunnerCallbacks
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
-        //if (!Object.HasInputAuthority) return;
+        localX = Input.GetAxis("Horizontal");
+        localX = Input.GetAxis("Vertical");
+        
+        localX = _playerActionMap.gameplay.move.ReadValue<Vector2>().x;
+        localZ = _playerActionMap.gameplay.move.ReadValue<Vector2>().y;
         
         var netData = new NetData();
-        
-        var x = _playerActionMap.gameplay.move.ReadValue<Vector2>().x;
-        var z = _playerActionMap.gameplay.move.ReadValue<Vector2>().y;
-
-        netData.direction.Set(x, 0, z);
-        //print($"Sending: {netData.direction}");
+        netData.direction.Set(localX, 0, localZ);
         input.Set(netData);
     }
-    
-
+    public override void FixedUpdateNetwork()
+    {
+        if (GetInput(out NetData netData))
+        {
+            transform.Translate(netData.direction.normalized * 5 * Runner.DeltaTime);
+        }
+    }
     
     #region other callbacks
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player) { }
@@ -57,20 +62,4 @@ public class InputProvider : NetworkBehaviour, INetworkRunnerCallbacks
     public void OnSceneLoadDone(NetworkRunner runner) { }
     public void OnSceneLoadStart(NetworkRunner runner) { }
     #endregion
-}
-
-enum MyButtons
-{
-    Forward = 0,
-    Backward = 1,
-    Left = 2,
-    Right = 3,
-    Fire = 4
-}
-
-public struct NetData : INetworkInput
-{
-    public NetworkButtons buttons;
-    public Vector3 direction;
-    public float rotation;
 }

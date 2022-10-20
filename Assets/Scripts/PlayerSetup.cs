@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Fusion;
 using UnityEngine;
@@ -11,9 +9,19 @@ public class PlayerSetup : NetworkBehaviour
     private void Start()
     {
         if (Runner == null) return;
-            //ColorPlayer
-            if (playerColors.Length == 0) return;
-            int colorIndex = Runner.ActivePlayers.Count() - 1;
-            GetComponentInChildren<Renderer>().material.color = playerColors[colorIndex];
+        
+        //ColorPlayer
+        if (playerColors.Length == 0) return;
+        int colorIndex = Runner.ActivePlayers.Count() - 1;
+        GetComponentInChildren<Renderer>().material.color = playerColors[colorIndex];
+
+        if (Object.HasInputAuthority)
+        {
+            gameObject.name += " - Mine";
+        }
+        else
+        {
+            gameObject.name += " - Other";
+        }
     }
 }
