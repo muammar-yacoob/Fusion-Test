@@ -1,6 +1,7 @@
 using Fusion;
 using UnityEngine;
 
+[RequireComponent(typeof(NetworkObject))]
 public class PlayerMovement : NetworkBehaviour
 {
     private Transform camTranform;
@@ -9,10 +10,12 @@ public class PlayerMovement : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
+        //if (!Object.HasInputAuthority) return;
+        
         if (GetInput(out NetData netData))
         {
             //print($"Receiving: {netData.direction}");
-            transform.position += (moveSpeed * netData.direction.normalized * Runner.DeltaTime);
+            transform.Translate(netData.direction * moveSpeed * Runner.DeltaTime);
         }
     }
 }

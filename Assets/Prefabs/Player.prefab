@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5157262798936506193}
   - component: {fileID: 5157262798936506195}
   - component: {fileID: 4073787346458800383}
-  - component: {fileID: 8231148918794105131}
+  - component: {fileID: 1669116003884056256}
+  - component: {fileID: -5443595268520630580}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MonoBehaviour:
   ObjectInterest: 1
   DefaultInterestGroups: []
   DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 0
+  AllowStateAuthorityOverride: 1
   AoiPositionSource: {fileID: 0}
   Flags: 2305
   NetworkGuid:
@@ -59,7 +60,8 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 4073787346458800383}
-  - {fileID: 8231148918794105131}
+  - {fileID: 1669116003884056256}
+  - {fileID: -5443595268520630580}
   SimulationBehaviours: []
 --- !u!65 &5157262798936506195
 BoxCollider:
@@ -87,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
---- !u!114 &8231148918794105131
+--- !u!114 &1669116003884056256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,6 +102,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+--- !u!114 &-5443595268520630580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157262798936506194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed58548fd11b5794c8fca96d428a088e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  playerColors:
+  - {r: 0, g: 0.80392164, b: 1, a: 0}
+  - {r: 1, g: 0.17254902, b: 0, a: 0}
+  - {r: 0.3372549, g: 1, b: 0.31764707, a: 0}
+  - {r: 1, g: 0.60784316, b: 0, a: 0}
 --- !u!1 &5157262799003562716
 GameObject:
   m_ObjectHideFlags: 0

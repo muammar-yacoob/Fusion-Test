@@ -12,6 +12,7 @@ public class NetworkRunnerManager : MonoBehaviour
     private void Awake()
     {
         _runner = GetComponent<NetworkRunner>();
+        _runner = GetComponent<NetworkRunner>();
         _runner.ProvideInput = true;
 
         _netSceneManager = GetComponent<NetworkSceneManagerDefault>();

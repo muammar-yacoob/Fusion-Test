@@ -26,6 +26,8 @@ public class InputProvider : NetworkBehaviour, INetworkRunnerCallbacks
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
+        //if (!Object.HasInputAuthority) return;
+        
         var netData = new NetData();
         
         var x = _playerActionMap.gameplay.move.ReadValue<Vector2>().x;
