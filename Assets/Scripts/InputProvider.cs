@@ -27,9 +27,6 @@ public class InputProvider : NetworkBehaviour, INetworkRunnerCallbacks
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
-        localX = Input.GetAxis("Horizontal");
-        localX = Input.GetAxis("Vertical");
-        
         localX = _playerActionMap.gameplay.move.ReadValue<Vector2>().x;
         localZ = _playerActionMap.gameplay.move.ReadValue<Vector2>().y;
         
