@@ -1,5 +1,7 @@
 using Fusion;
+using UnityEngine;
 
+[RequireComponent(typeof(NetworkCharacterControllerPrototype))]
 public class PlayerMovement : NetworkBehaviour
 {
     private NetworkCharacterControllerPrototype _cc;
