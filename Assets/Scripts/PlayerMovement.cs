@@ -10,10 +10,9 @@ public class PlayerMovement : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
-        if (GetInput(out NetworkInputData data))
-        {
-            data.direction.Normalize();
-            _cc.Move(5*data.direction*Runner.DeltaTime);
-        }
+        if (GetInput<NetworkInputData>(out var netInput) == false) return;
+
+        netInput.Direction.Normalize();
+        _cc.Move(5*netInput.Direction*Runner.DeltaTime);
     }
 }

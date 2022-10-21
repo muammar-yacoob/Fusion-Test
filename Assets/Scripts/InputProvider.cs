@@ -19,16 +19,19 @@ public class InputProvider : MonoBehaviour, INetworkRunnerCallbacks
         _playerActionMap.gameplay.Disable();
     }
 
-    public void OnInput(NetworkRunner runner, NetworkInput input)
+    public void OnInput(NetworkRunner runner, NetworkInput netInput)
     {
         //Collecting local input
         var localX = _playerActionMap.gameplay.move.ReadValue<Vector2>().x;
         var localZ = _playerActionMap.gameplay.move.ReadValue<Vector2>().y;
 
         //Sending input over network
-        var data = new NetworkInputData();
-        data.direction.Set(localX, 0, localZ);
-        input.Set(data);
+        var tmpInput = new NetworkInputData();
+        tmpInput.Direction.Set(localX, 0, localZ);
+        
+        tmpInput.Buttons.Set(MyButtons.Color, _playerActionMap.gameplay.fire.IsPressed());
+        
+        netInput.Set(tmpInput);
     }
 
     #region other callbacks
@@ -48,9 +51,4 @@ public class InputProvider : MonoBehaviour, INetworkRunnerCallbacks
     public void OnSceneLoadDone(NetworkRunner runner) { }
     public void OnSceneLoadStart(NetworkRunner runner) { }
     #endregion
-}
-
-public struct NetworkInputData : INetworkInput
-{
-    public Vector3 direction;
 }

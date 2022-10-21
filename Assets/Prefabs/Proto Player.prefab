@@ -145,6 +145,8 @@ MonoBehaviour:
   playerColors:
   - {r: 0, g: 0.7149544, b: 1, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.33490568, g: 1, b: 0.3885104, a: 1}
+  - {r: 0.99682266, g: 1, b: 0.13679248, a: 1}
 --- !u!1 &2952241307582475951
 GameObject:
   m_ObjectHideFlags: 0
