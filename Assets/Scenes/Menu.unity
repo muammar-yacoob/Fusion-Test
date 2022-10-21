@@ -156,6 +156,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab:
     RawGuidValue: b1ce2d0d5c57597418f4acc392a1ed6a
+  playerColors:
+  - {r: 0, g: 0.8000001, b: 1, a: 1}
+  - {r: 1, g: 0.13333334, b: 0.13333334, a: 1}
+  - {r: 0.5686275, g: 1, b: 0.5058824, a: 1}
+  - {r: 1, g: 0.96470594, b: 0, a: 1}
 --- !u!4 &119298383
 Transform:
   m_ObjectHideFlags: 0

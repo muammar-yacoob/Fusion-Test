@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 521717199982948738}
   - component: {fileID: 1960249441834688793}
   - component: {fileID: 8297627539301953103}
+  - component: {fileID: 4967922584962323146}
   m_Layer: 0
   m_Name: Proto Player
   m_TagString: Untagged
@@ -113,6 +114,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 521717199982948738}
   - {fileID: 8297627539301953103}
+  - {fileID: 4967922584962323146}
   SimulationBehaviours: []
 --- !u!114 &8297627539301953103
 MonoBehaviour:
@@ -127,6 +129,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+--- !u!114 &4967922584962323146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814108640839663173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed58548fd11b5794c8fca96d428a088e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  playerColors:
+  - {r: 0, g: 0.75367355, b: 1, a: 1}
+  - {r: 1, g: 0.0990566, b: 0.0990566, a: 1}
+  - {r: 0.5455051, g: 1, b: 0.4481132, a: 1}
+  - {r: 1, g: 0.7166668, b: 0, a: 1}
 --- !u!1 &2952241307582475951
 GameObject:
   m_ObjectHideFlags: 0
