@@ -39,13 +39,15 @@ public class PlayerColor : NetworkBehaviour
     
     public override void Render()
     {
+        if(mat.color == targetColor) return;
+        
         if (Object.HasInputAuthority)
         {
-            mat.color = Color.Lerp(mat.color, targetColor, 2* Time.deltaTime);
+            mat.color = targetColor;
         }
         else
         {
-            mat.color = targetColor;
+            mat.color = Color.Lerp(mat.color, targetColor, 2* Time.deltaTime);
         }
     }
 

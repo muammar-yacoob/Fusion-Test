@@ -28,9 +28,18 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
             ""id"": ""265c38f5-dd18-4d34-b198-aec58e1627ff"",
             ""actions"": [
                 {
-                    ""name"": ""fire"",
+                    ""name"": ""color"",
                     ""type"": ""Button"",
                     ""id"": ""1077f913-a9f9-41b1-acb3-b9ee0adbc744"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap,SlowTap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""97a7234b-8a87-4f96-ab40-c9152ee4ff77"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Tap,SlowTap"",
@@ -59,11 +68,11 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""abb776f3-f329-4f7b-bbf8-b577d13be018"",
-                    ""path"": ""*/{PrimaryAction}"",
+                    ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""fire"",
+                    ""action"": ""color"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -154,6 +163,17 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""action"": ""look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a70d4ef-7de9-476e-a0a6-fd8409e251b4"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -162,7 +182,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
 }");
         // gameplay
         m_gameplay = asset.FindActionMap("gameplay", throwIfNotFound: true);
-        m_gameplay_fire = m_gameplay.FindAction("fire", throwIfNotFound: true);
+        m_gameplay_color = m_gameplay.FindAction("color", throwIfNotFound: true);
+        m_gameplay_jump = m_gameplay.FindAction("jump", throwIfNotFound: true);
         m_gameplay_move = m_gameplay.FindAction("move", throwIfNotFound: true);
         m_gameplay_look = m_gameplay.FindAction("look", throwIfNotFound: true);
     }
@@ -224,14 +245,16 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
     // gameplay
     private readonly InputActionMap m_gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
-    private readonly InputAction m_gameplay_fire;
+    private readonly InputAction m_gameplay_color;
+    private readonly InputAction m_gameplay_jump;
     private readonly InputAction m_gameplay_move;
     private readonly InputAction m_gameplay_look;
     public struct GameplayActions
     {
         private @SimpleControls m_Wrapper;
         public GameplayActions(@SimpleControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @fire => m_Wrapper.m_gameplay_fire;
+        public InputAction @color => m_Wrapper.m_gameplay_color;
+        public InputAction @jump => m_Wrapper.m_gameplay_jump;
         public InputAction @move => m_Wrapper.m_gameplay_move;
         public InputAction @look => m_Wrapper.m_gameplay_look;
         public InputActionMap Get() { return m_Wrapper.m_gameplay; }
@@ -243,9 +266,12 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_GameplayActionsCallbackInterface != null)
             {
-                @fire.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
-                @fire.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
-                @fire.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
+                @color.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnColor;
+                @color.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnColor;
+                @color.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnColor;
+                @jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @move.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @move.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @move.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
@@ -256,9 +282,12 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @fire.started += instance.OnFire;
-                @fire.performed += instance.OnFire;
-                @fire.canceled += instance.OnFire;
+                @color.started += instance.OnColor;
+                @color.performed += instance.OnColor;
+                @color.canceled += instance.OnColor;
+                @jump.started += instance.OnJump;
+                @jump.performed += instance.OnJump;
+                @jump.canceled += instance.OnJump;
                 @move.started += instance.OnMove;
                 @move.performed += instance.OnMove;
                 @move.canceled += instance.OnMove;
@@ -271,7 +300,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
     public GameplayActions @gameplay => new GameplayActions(this);
     public interface IGameplayActions
     {
-        void OnFire(InputAction.CallbackContext context);
+        void OnColor(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
     }

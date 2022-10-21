@@ -12,6 +12,12 @@ public class ProtoMenu : MonoBehaviour
 
     private void OnGUI()
     {
+        DrawHud();
+        DrawInstructions();
+    }
+
+    private void DrawHud()
+    {
         if (_runner != null) return;
         
         _roomName = GUI.TextField(new Rect(10, 10, 120, 20), _roomName, 10);
@@ -22,7 +28,14 @@ public class ProtoMenu : MonoBehaviour
             StartGame(GameMode.AutoHostOrClient);
         }
     }
-  
+
+    private void DrawInstructions()
+    {
+        if (_runner == null) return;
+        GUI.contentColor = Color.blue;
+        GUI.Label(new Rect(10, Screen.height - 50, Screen.width-10, 20),"CTRL: Color, SpaceBar: Jump");
+    }
+
     async void StartGame(GameMode mode)
     {
         _runner = gameObject.AddComponent<NetworkRunner>();

@@ -27,9 +27,10 @@ public class InputProvider : MonoBehaviour, INetworkRunnerCallbacks
 
         //Sending input over network
         var tmpInput = new NetworkInputData();
-        tmpInput.Direction.Set(localX, 0, localZ);
         
-        tmpInput.Buttons.Set(MyButtons.Color, _playerActionMap.gameplay.fire.IsPressed());
+        tmpInput.Direction.Set(localX, 0, localZ);
+        tmpInput.Buttons.Set(MyButtons.Color, _playerActionMap.gameplay.color.IsPressed());
+        tmpInput.Buttons.Set(MyButtons.Jump, _playerActionMap.gameplay.jump.IsPressed());
         
         netInput.Set(tmpInput);
     }

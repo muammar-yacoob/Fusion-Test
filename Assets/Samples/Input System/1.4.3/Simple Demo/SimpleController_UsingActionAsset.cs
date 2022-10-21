@@ -18,7 +18,7 @@ public class SimpleController_UsingActionAsset : MonoBehaviour
     {
         m_Controls = new SimpleControls();
 
-        m_Controls.gameplay.fire.performed +=
+        m_Controls.gameplay.color.performed +=
             ctx =>
         {
             if (ctx.interaction is SlowTapInteraction)
@@ -31,13 +31,13 @@ public class SimpleController_UsingActionAsset : MonoBehaviour
             }
             m_Charging = false;
         };
-        m_Controls.gameplay.fire.started +=
+        m_Controls.gameplay.color.started +=
             ctx =>
         {
             if (ctx.interaction is SlowTapInteraction)
                 m_Charging = true;
         };
-        m_Controls.gameplay.fire.canceled +=
+        m_Controls.gameplay.color.canceled +=
             ctx =>
         {
             m_Charging = false;
