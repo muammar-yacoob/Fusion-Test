@@ -3,51 +3,40 @@ using System.Collections.Generic;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
-using UnityEngine.Animations;
 
-[RequireComponent(typeof(NetworkObject))]
-public class InputProvider : NetworkBehaviour, INetworkRunnerCallbacks
+public class InputProvider : MonoBehaviour, INetworkRunnerCallbacks
 {
-    //Action Map type/asset is Hardcoded for now.
     private SimpleControls _playerActionMap;
-    private float localX,localZ;
 
-    public void Start() //this has to be Start, you can't do it on OnEnable :(
+    private void OnEnable()
     {
-        Runner?.AddCallbacks(this);
-        _playerActionMap = new SimpleControls();
+        _playerActionMap = new();
         _playerActionMap.gameplay.Enable();
     }
-    
-    public void OnDisable()
+
+    private void OnDisable()
     {
-        Runner?.RemoveCallbacks(this);
         _playerActionMap.gameplay.Disable();
     }
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
-        localX = _playerActionMap.gameplay.move.ReadValue<Vector2>().x;
-        localZ = _playerActionMap.gameplay.move.ReadValue<Vector2>().y;
-        
-        var netData = new NetData();
-        netData.direction.Set(localX, 0, localZ);
-        input.Set(netData);
+        //Collecting local input
+        var localX = _playerActionMap.gameplay.move.ReadValue<Vector2>().x;
+        var localZ = _playerActionMap.gameplay.move.ReadValue<Vector2>().y;
+
+        //Sending input over network
+        var data = new NetworkInputData();
+        data.direction.Set(localX, 0, localZ);
+        input.Set(data);
     }
-    public override void FixedUpdateNetwork()
-    {
-        if (GetInput(out NetData netData))
-        {
-            transform.Translate(netData.direction.normalized * 5 * Runner.DeltaTime);
-        }
-    }
-    
+
     #region other callbacks
+    public void OnConnectedToServer(NetworkRunner runner) { }
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player) { }
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) { }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
-    public void OnConnectedToServer(NetworkRunner runner) { }
     public void OnDisconnectedFromServer(NetworkRunner runner) { }
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
     public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) { }
@@ -59,4 +48,9 @@ public class InputProvider : NetworkBehaviour, INetworkRunnerCallbacks
     public void OnSceneLoadDone(NetworkRunner runner) { }
     public void OnSceneLoadStart(NetworkRunner runner) { }
     #endregion
+}
+
+public struct NetworkInputData : INetworkInput
+{
+    public Vector3 direction;
 }

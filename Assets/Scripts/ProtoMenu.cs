@@ -10,7 +10,7 @@ public class ProtoMenu : MonoBehaviour
     private void OnGUI()
     {
         if (_runner != null) return;
-        if (GUI.Button(new Rect(0,0,200,40), "Host or Client"))
+        if (GUI.Button(new Rect(10,10,200,30), "Start Game"))
         {
             StartGame(GameMode.AutoHostOrClient);
         }
@@ -24,7 +24,7 @@ public class ProtoMenu : MonoBehaviour
         await _runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
-            SessionName = "TestRoom",
+            SessionName = "Default",
             Scene = SceneManager.GetActiveScene().buildIndex,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });}

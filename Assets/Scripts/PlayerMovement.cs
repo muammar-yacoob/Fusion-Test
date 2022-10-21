@@ -1,18 +1,17 @@
 using Fusion;
-using UnityEngine;
 
-[RequireComponent(typeof(NetworkObject))]
 public class PlayerMovement : NetworkBehaviour
 {
-    private Transform camTranform;
-    private float moveSpeed = 5;
-    void Awake() => camTranform = Camera.main.transform;
+    private NetworkCharacterControllerPrototype _cc;
+
+    private void Awake()=> _cc = GetComponent<NetworkCharacterControllerPrototype>();
 
     public override void FixedUpdateNetwork()
     {
-        if (GetInput(out NetData netData))
+        if (GetInput(out NetworkInputData data))
         {
-            transform.Translate(netData.direction.normalized * Runner.DeltaTime);
+            data.direction.Normalize();
+            _cc.Move(5*data.direction*Runner.DeltaTime);
         }
     }
 }
