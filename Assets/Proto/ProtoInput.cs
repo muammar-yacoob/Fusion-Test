@@ -6,25 +6,32 @@ using UnityEngine;
 
 public class ProtoInput : MonoBehaviour, INetworkRunnerCallbacks
 {
+    private SimpleControls _playerActionMap;
+
+    private void OnEnable()
+    {
+        _playerActionMap = new();
+        _playerActionMap.gameplay.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _playerActionMap.gameplay.Disable();
+    }
+
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
+        //Collecting local input
+        var localX = _playerActionMap.gameplay.move.ReadValue<Vector2>().x;
+        var localZ = _playerActionMap.gameplay.move.ReadValue<Vector2>().y;
+
+        //Sending input over network
         var data = new NetworkInputData();
-
-        if (Input.GetKey(KeyCode.W))
-            data.direction += Vector3.forward;
-
-        if (Input.GetKey(KeyCode.S))
-            data.direction += Vector3.back;
-
-        if (Input.GetKey(KeyCode.A))
-            data.direction += Vector3.left;
-
-        if (Input.GetKey(KeyCode.D))
-            data.direction += Vector3.right;
-
+        data.direction.Set(localX, 0, localZ);
         input.Set(data);
     }
 
+    #region other callbacks
     public void OnConnectedToServer(NetworkRunner runner) { }
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player) { }
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) { }
@@ -40,6 +47,7 @@ public class ProtoInput : MonoBehaviour, INetworkRunnerCallbacks
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data) { }
     public void OnSceneLoadDone(NetworkRunner runner) { }
     public void OnSceneLoadStart(NetworkRunner runner) { }
+    #endregion
 }
 
 public struct NetworkInputData : INetworkInput
