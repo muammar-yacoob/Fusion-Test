@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c101365-9dd2-48b5-b279-d390463c972a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Fusion-Test/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fusion-Test/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon/Fusion/Resources/NetworkProjectConfig.fusion" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/Fusion/Resources/NetworkProjectConfig.fusion" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Proto/ProtoSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Proto/ProtoSpawner.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +14,7 @@
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1dfe0a4986e145bdabd295a82dd1ea8b8cc00/7d/5e7b9400/MultiPropertyDrawersFixAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1dfe0a4986e145bdabd295a82dd1ea8b8cc00/ad/722b66e4/PropertyAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Proto/ProtoInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Proto/ProtoMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Proto/ProtoPlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerSetup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnityProjects/Photon Fusion Test/Assets/Scripts/Fusion Helper/Simple/SimplePlayer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -88,7 +86,7 @@
       <updated>1666251990954</updated>
       <workItem from="1666251997953" duration="2719000" />
       <workItem from="1666257927721" duration="8709000" />
-      <workItem from="1666340681199" duration="2688000" />
+      <workItem from="1666340681199" duration="3103000" />
     </task>
     <servers />
   </component>
