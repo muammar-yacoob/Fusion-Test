@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 119298383}
   - component: {fileID: 119298386}
   - component: {fileID: 119298385}
-  - component: {fileID: 119298384}
+  - component: {fileID: 119298387}
   m_Layer: 0
   m_Name: Connection Manager
   m_TagString: Untagged
@@ -157,18 +157,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &119298384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119298381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2fb340dfdf4efc40bbaa8643d69b7a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &119298385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +181,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75f9a952109922b42a4d60040b0360e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &119298387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119298381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2fb340dfdf4efc40bbaa8643d69b7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &144118350
