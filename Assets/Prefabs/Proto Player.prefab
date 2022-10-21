@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6165168665192700913}
   - component: {fileID: 1960249441834688793}
   - component: {fileID: -3886899258973277075}
+  - component: {fileID: -3245453224156861013}
   - component: {fileID: -4070961065562238321}
   - component: {fileID: 6921905595300635941}
   - component: {fileID: 4692125400483872919}
@@ -60,6 +61,7 @@ MonoBehaviour:
     RawGuidValue: b1ce2d0d5c57597418f4acc392a1ed6a
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: -3245453224156861013}
   - {fileID: -4070961065562238321}
   - {fileID: 6921905595300635941}
   - {fileID: 4692125400483872919}
@@ -82,6 +84,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3245453224156861013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814108640839663173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd016fa62643074da8b035ad22c15cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
 --- !u!114 &-4070961065562238321
 MonoBehaviour:
   m_ObjectHideFlags: 0
