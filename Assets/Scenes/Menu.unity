@@ -133,11 +133,10 @@ GameObject:
   m_Component:
   - component: {fileID: 119298383}
   - component: {fileID: 119298384}
-  - component: {fileID: 119298386}
   - component: {fileID: 119298382}
   - component: {fileID: 119298385}
   m_Layer: 0
-  m_Name: '[ Spawner ]'
+  m_Name: Connection Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,20 +180,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 119298381}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: 75f9a952109922b42a4d60040b0360e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectInterest: 1
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2561
-  NetworkGuid:
-    RawGuidValue: 3c8269bbd1514a9883af882ab4a7a8b6
-  NestedObjects: []
-  NetworkedBehaviours: []
-  SimulationBehaviours: []
 --- !u!114 &119298385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,18 +193,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2fb340dfdf4efc40bbaa8643d69b7a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &119298386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119298381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f9a952109922b42a4d60040b0360e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &144118350
