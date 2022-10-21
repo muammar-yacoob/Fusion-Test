@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Fusion;
 using UnityEngine;
@@ -8,12 +7,18 @@ public class PlayerColor : NetworkBehaviour
 {
     [SerializeField] private Color[] playerColors;
     private Material mat;
+    private Color targetColor;
 
-    [Networked(OnChanged = nameof(OnColorChanged))]
-    int colorIndex { get; set; }
+    [Networked(OnChanged = nameof(OnColorChanged))] int colorIndex { get; set; }
 
-    private void Awake()=> mat = GetComponentInChildren<Renderer>().material;
-
+    public override void Spawned()
+    {
+        mat = GetComponentInChildren<Renderer>().material;
+        colorIndex = Runner.ActivePlayers.Count() - 1; //Trigers Property OnChange for other players
+        
+        //Sets color locally
+        SetColor();
+    }
     public override void FixedUpdateNetwork()
     {
         if (GetInput(out NetworkInputData data))
@@ -21,22 +26,19 @@ public class PlayerColor : NetworkBehaviour
             //data.colorButton;
         }
     }
-
-    private void Start()
+    
+    public override void Render()
     {
-        colorIndex = Runner.ActivePlayers.Count() - 1; //Trigers Property OnChange
-        //Sets color locally
-        SetColor();
+        if (Object.HasInputAuthority)
+        {
+            mat.color = Color.Lerp(mat.color, targetColor, Time.deltaTime);
+        }
+        else
+        {
+            mat.color = targetColor;
+        }
     }
 
-    public static void OnColorChanged(Changed<PlayerColor> changed)
-    {
-        changed.LoadNew();
-        changed.Behaviour.SetColor();
-    }
-
-    private void SetColor()
-    {
-        mat.color = playerColors[colorIndex];
-    }
+    public static void OnColorChanged(Changed<PlayerColor> changed) => changed.Behaviour.SetColor();
+    private void SetColor()=> targetColor = playerColors[colorIndex];
 }
