@@ -32,8 +32,12 @@ public class ProtoMenu : MonoBehaviour
     private void DrawInstructions()
     {
         if (_runner == null) return;
-        GUI.contentColor = Color.blue;
-        GUI.Label(new Rect(10, Screen.height - 50, Screen.width-10, 20),"CTRL: Color, SpaceBar: Jump");
+
+        string instructions = "CTRL: Color, SpaceBar: Jump";
+        Vector2 lableSize = new GUIStyle().CalcSize(new GUIContent(instructions));
+        Rect r = new Rect(10, Screen.height - 50, lableSize.x*1.1f, lableSize.y*1.5f);
+        GUI.contentColor = Color.white;
+        GUI.Box (r, instructions);
     }
 
     async void StartGame(GameMode mode)

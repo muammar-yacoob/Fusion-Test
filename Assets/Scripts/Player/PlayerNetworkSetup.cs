@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerNetworkSetup : NetworkBehaviour
 {
-    public static event Action<string> OnPlayerJoined =  delegate{};
+    public static event Action<MessageData> OnPlayerJoined =  delegate{};
     public override void Spawned()
     {
         string welcomeMessage;
@@ -18,12 +18,15 @@ public class PlayerNetworkSetup : NetworkBehaviour
             //Remote Player Setup
             welcomeMessage = $"{Object.Id} joined";
         }
-        OnPlayerJoined?.Invoke(welcomeMessage);
+        
+        var msgData = new MessageData(welcomeMessage, Color.blue);
+        OnPlayerJoined?.Invoke(msgData);
         
     }
 
     public override void Despawned(NetworkRunner runner, bool hasState)
     {
-        OnPlayerJoined?.Invoke($"{Object.Id} left");
+        var msgData = new MessageData($"{Object.Id} left", Color.red);
+        OnPlayerJoined?.Invoke(msgData);
     }
 }
