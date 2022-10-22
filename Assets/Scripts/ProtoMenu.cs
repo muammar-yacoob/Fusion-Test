@@ -46,8 +46,8 @@ public class ProtoMenu : MonoBehaviour
         _runner.ProvideInput = true;
         
         var customProps = new Dictionary<string, SessionProperty>() {
-            { "Map", (int)Map.Airport },
-            { "Stage", (int)Stage.Intro }
+            { nameof(Map), (int)Map.Airport },
+            { nameof(Stage), (int)Stage.Intro }
         };  
 
         await _runner.StartGame(new StartGameArgs()
