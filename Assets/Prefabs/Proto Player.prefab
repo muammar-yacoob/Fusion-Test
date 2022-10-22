@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 4692125400483872919}
   - component: {fileID: 286662511}
   - component: {fileID: 6166546358527539555}
+  - component: {fileID: -4286602358424034674}
   m_Layer: 0
   m_Name: Proto Player
   m_TagString: Untagged
@@ -173,6 +174,7 @@ MonoBehaviour:
   - {fileID: 6921905595300635941}
   - {fileID: 4692125400483872919}
   - {fileID: 286662511}
+  - {fileID: -4286602358424034674}
   SimulationBehaviours: []
 --- !u!143 &-3886899258973277075
 CharacterController:
@@ -312,6 +314,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5052810cec7c45c5b819b24c0e6dd35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4286602358424034674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814108640839663173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e55bc98712b3ed54396366b12e73eeeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  nickNameText: {fileID: 999538017620593743}
+  _nickName:
+    _length: 0
+    _data:
+      Data: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!1 &1290310271955968168
 GameObject:
   m_ObjectHideFlags: 0

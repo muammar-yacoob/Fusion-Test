@@ -11,7 +11,7 @@ public class SessionController : NetworkBehaviour
     private int max = 0;
     
     //[Networked(OnChanged = nameof(OnSessionPropertyChanged))] //can't use on Dictionary
-    Dictionary<string, SessionProperty> CustomProps { get; set; }
+    private Dictionary<string, SessionProperty> CustomProps = new();
     private void Awake() => max = Enum.GetNames(typeof(Map)).Length;
 
     [ContextMenu("Next Stage")]
