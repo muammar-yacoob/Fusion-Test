@@ -18,6 +18,7 @@ public class PlayerMovement : NetworkBehaviour
         _cc.Move(5 * netInput.Direction.normalized * Runner.DeltaTime);
 
         DoJump(netInput);
+        ResetIfDropped();
     }
 
     private void DoJump(NetworkInputData netInput)
@@ -33,6 +34,11 @@ public class PlayerMovement : NetworkBehaviour
             if (!_cc.IsGrounded || _cc.Velocity.y > 0) return;
             _cc.Velocity = Vector3.up * jumpHight;
         }
-
+    }
+    
+    private void ResetIfDropped()
+    {
+        if (_cc.transform.position.y < -50)
+            _cc.transform.position = Vector3.up * 5;
     }
 }

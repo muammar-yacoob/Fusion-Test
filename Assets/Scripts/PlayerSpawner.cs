@@ -12,7 +12,7 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
   {
     if (runner.IsServer)
     {
-      NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, Vector3.up *2, Quaternion.identity, player);
+      NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, Vector3.up *5, Quaternion.identity, player);
       _spawnedCharacters.Add(player, networkPlayerObject);
     }
   }

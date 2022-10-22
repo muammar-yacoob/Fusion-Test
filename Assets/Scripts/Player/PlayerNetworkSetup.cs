@@ -19,9 +19,8 @@ public class PlayerNetworkSetup : NetworkBehaviour
             welcomeMessage = $"{Object.Id} joined";
         }
         
-        var msgData = new MessageData(welcomeMessage, Color.blue);
+        var msgData = new MessageData(welcomeMessage, Color.white);
         OnPlayerJoined?.Invoke(msgData);
-        
     }
 
     public override void Despawned(NetworkRunner runner, bool hasState)
