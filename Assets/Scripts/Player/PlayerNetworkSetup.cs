@@ -1,5 +1,6 @@
 using System;
 using Fusion;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class PlayerNetworkSetup : NetworkBehaviour
@@ -17,6 +18,7 @@ public class PlayerNetworkSetup : NetworkBehaviour
         {
             //Remote Player Setup
             welcomeMessage = $"{Object.Id} joined";
+            //Destroy(gameObject.GetComponentInChildren<AnimationController>());
         }
         
         var msgData = new MessageData(welcomeMessage, Color.white);

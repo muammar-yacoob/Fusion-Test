@@ -1,3 +1,4 @@
+using System;
 using Fusion;
 using UnityEngine;
 
@@ -6,7 +7,8 @@ public class PlayerMovement : NetworkBehaviour
 {
     private NetworkCharacterControllerPrototype _cc;
     private float jumpHight = 15;
-    [Networked] public NetworkButtons ButtonsPrevious { get; set; }
+    public static event Action<Anim> OnAnim = delegate { };
+        [Networked] public NetworkButtons ButtonsPrevious { get; set; }
 
     private void Awake() => _cc = GetComponent<NetworkCharacterControllerPrototype>();
 
@@ -33,6 +35,7 @@ public class PlayerMovement : NetworkBehaviour
             //Jump
             if (!_cc.IsGrounded || _cc.Velocity.y > 0) return;
             _cc.Velocity = Vector3.up * jumpHight;
+            OnAnim?.Invoke(Anim.Jump);
         }
     }
     
@@ -42,3 +45,4 @@ public class PlayerMovement : NetworkBehaviour
             _cc.transform.position = Vector3.up * 5;
     }
 }
+public enum Anim{Jump,Damage,Talk,Die}

@@ -37,7 +37,7 @@ public class MessageHandler : MonoBehaviour
         foreach (var msg in msgQueue)
         {
             GUI.color = msg.Color;
-            GUI.Label(new Rect(10, 12*i++, Screen.width / 3, 20), msg.Message);
+            GUI.Label(new Rect(10, 15*i++, Screen.width / 3, 20), msg.Message);
         }
     }
 }
