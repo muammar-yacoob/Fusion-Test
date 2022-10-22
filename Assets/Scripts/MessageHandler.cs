@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 
+
 public class MessageHandler : MonoBehaviour
 {
     private string screenMessage;
@@ -37,7 +38,7 @@ public class MessageHandler : MonoBehaviour
         foreach (var msg in msgQueue)
         {
             GUI.color = msg.Color;
-            GUI.Label(new Rect(10, 15*i++, Screen.width / 3, 20), msg.Message);
+            GUI.Label(new Rect(10, 15*i++, Screen.width , 20), msg.Message);
         }
     }
 }
@@ -54,14 +55,4 @@ public class MessageData
     }
 
     public override string ToString() => this.Message.ForeColor(this.Color);
-}
-
-public static class Utils
-{
-    public static string ForeColor(this string original, Color color)
-    {
-        var colorHex = ColorUtility.ToHtmlStringRGB(color);
-        var coloredString = $"<color=#{colorHex}>{original}</color>";
-        return original;
-    }
 }

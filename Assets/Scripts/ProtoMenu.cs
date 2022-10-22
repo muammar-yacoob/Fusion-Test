@@ -25,7 +25,7 @@ public class ProtoMenu : MonoBehaviour
         if(_roomName.IsNullOrEmpty()) return;
         if (GUI.Button(new Rect(10,33,120,20), $"Start/Join {_roomName}") )
         {
-            StartGame(GameMode.AutoHostOrClient);
+            StartGame(GameMode.AutoHostOrClient, Map.Airport, Stage.Intro );
         }
     }
 
@@ -40,16 +40,25 @@ public class ProtoMenu : MonoBehaviour
         GUI.Box (r, instructions);
     }
 
-    async void StartGame(GameMode mode)
+    async void StartGame(GameMode mode, Map map, Stage stage)
     {
         _runner = gameObject.AddComponent<NetworkRunner>();
         _runner.ProvideInput = true;
+        
+        var customProps = new Dictionary<string, SessionProperty>() {
+            { "Map", (int)Map.Airport },
+            { "Stage", (int)Stage.Intro }
+        };  
 
         await _runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
             SessionName = _roomName,
             Scene = SceneManager.GetActiveScene().buildIndex,
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
+            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
+            PlayerCount = 4,
+            SessionProperties =  customProps
         });}
 }
+public enum Map{Airport, EngineRoom, Garage }
+public enum Stage{Intro, IDG, APU, DC, GPU }
