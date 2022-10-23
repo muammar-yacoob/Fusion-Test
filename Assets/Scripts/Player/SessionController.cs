@@ -37,6 +37,7 @@ public class SessionController : NetworkBehaviour
     }
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(SessionController))]
 public class SessionControllerCustomInspector : Editor 
 {
@@ -50,3 +51,4 @@ public class SessionControllerCustomInspector : Editor
         EditorGUILayout.HelpBox("Iterates over session stages", MessageType.Info);
     }
 }
+#endif
