@@ -47,7 +47,7 @@ namespace Born.Player
                 welcomeMessage = $"{Object.Id} joined";
                 
                 //remove unneccessary components
-                Destroy(gameObject.GetComponentInChildren<PlayerAnimation>());
+                //Destroy(gameObject.GetComponentInChildren<PlayerAnimation>());
             }
         
             var msgData = new MessageData(welcomeMessage, Color.white);

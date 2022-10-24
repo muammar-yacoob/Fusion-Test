@@ -14,10 +14,6 @@ namespace Born.Player
                 gameObject.name += " - Mine";
                 Selection.activeObject = transform;
             }
-            else
-            {
-                gameObject.name += " - Other";
-            }
         }
 #endif
     }
