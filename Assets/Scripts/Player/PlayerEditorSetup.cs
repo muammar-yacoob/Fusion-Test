@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+
 using Fusion;
 using UnityEditor;
 
@@ -6,6 +6,7 @@ namespace Born.Player
 {
     public class PlayerEditorSetup : NetworkBehaviour
     {
+#if UNITY_EDITOR
         public override void Spawned()
         {
             if (Object.HasInputAuthority)
@@ -18,6 +19,6 @@ namespace Born.Player
                 gameObject.name += " - Other";
             }
         }
+#endif
     }
 }
-#endif
