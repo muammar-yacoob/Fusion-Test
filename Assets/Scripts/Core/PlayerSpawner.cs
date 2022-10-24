@@ -4,41 +4,33 @@ using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
 
-public class InputProvider : MonoBehaviour, INetworkRunnerCallbacks
+namespace Born.Core
 {
-    private SimpleControls _playerActionMap;
-
-    private void OnEnable()
+  public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
+  {
+    [SerializeField] private NetworkPrefabRef _playerPrefab;
+    private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new ();
+    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        _playerActionMap = new();
-        _playerActionMap.gameplay.Enable();
+      if (runner.IsServer)
+      {
+        NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, Vector3.up *5, transform.rotation, player);
+        _spawnedCharacters.Add(player, networkPlayerObject);
+      }
     }
 
-    private void OnDisable()
+    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
-        _playerActionMap.gameplay.Disable();
+      if (_spawnedCharacters.TryGetValue(player, out NetworkObject networkObject))
+      {
+        runner.Despawn(networkObject);
+        _spawnedCharacters.Remove(player);
+      }
     }
-
-    public void OnInput(NetworkRunner runner, NetworkInput netInput)
-    {
-        //Collecting local input
-        var localX = _playerActionMap.gameplay.move.ReadValue<Vector2>().x;
-        var localZ = _playerActionMap.gameplay.move.ReadValue<Vector2>().y;
-
-        //Sending input over network
-        var tmpInput = new NetworkInputData();
-        
-        tmpInput.Direction.Set(localX, 0, localZ);
-        tmpInput.Buttons.Set(MyButtons.Color, _playerActionMap.gameplay.color.IsPressed());
-        tmpInput.Buttons.Set(MyButtons.Jump, _playerActionMap.gameplay.jump.IsPressed());
-        
-        netInput.Set(tmpInput);
-    }
-
+  
     #region other callbacks
     public void OnConnectedToServer(NetworkRunner runner) { }
-    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player) { }
-    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) { }
+    public void OnInput(NetworkRunner runner, NetworkInput input) { }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
     public void OnDisconnectedFromServer(NetworkRunner runner) { }
@@ -52,4 +44,5 @@ public class InputProvider : MonoBehaviour, INetworkRunnerCallbacks
     public void OnSceneLoadDone(NetworkRunner runner) { }
     public void OnSceneLoadStart(NetworkRunner runner) { }
     #endregion
+  }
 }

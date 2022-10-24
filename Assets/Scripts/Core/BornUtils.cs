@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Reflection;
 using UnityEngine;
 
+namespace Born.Core
+{
     public static class BornUtils
     {
         /// <summary>
@@ -43,3 +45,4 @@ using UnityEngine;
             return name;
         }
     }
+}

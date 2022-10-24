@@ -1,29 +1,31 @@
 using System;
-using Fusion;
 using UnityEngine;
 
-public class PlayerAnimation : MonoBehaviour
+namespace Born.Player
 {
-    private Animator animController;
-
-    private void Awake()
+    public class PlayerAnimation : MonoBehaviour
     {
-        animController = GetComponentInChildren<Animator>();
-    }
+        private Animator animController;
 
-    private void OnEnable()
-    {
-        PlayerMovement.OnAnim += Handle_OnAnim;
-    }
+        private void Awake()
+        {
+            animController = GetComponentInChildren<Animator>();
+        }
+
+        private void OnEnable()
+        {
+            PlayerMovement.OnAnim += Handle_OnAnim;
+        }
     
-    private void OnDisable()
-    {
-        PlayerMovement.OnAnim -= Handle_OnAnim;
-    }
+        private void OnDisable()
+        {
+            PlayerMovement.OnAnim -= Handle_OnAnim;
+        }
 
-    private void Handle_OnAnim(Anim anim)
-    {
-        string animName = Enum.GetName(typeof(Anim), anim);
-        animController.SetTrigger(animName);
+        private void Handle_OnAnim(Anim anim)
+        {
+            string animName = Enum.GetName(typeof(Anim), anim);
+            animController.SetTrigger(animName);
+        }
     }
 }

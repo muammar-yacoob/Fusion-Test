@@ -1,6 +1,6 @@
 ﻿using Fusion;
 
-namespace Player
+namespace Born.Player
 {
     public class PlayerData : NetworkBehaviour
     {

@@ -1,22 +1,22 @@
 #if UNITY_EDITOR
-using System.Collections;
-using System.Collections.Generic;
 using Fusion;
 using UnityEditor;
-using UnityEngine;
 
-public class PlayerEditorSetup : NetworkBehaviour
+namespace Born.Player
 {
-    private void Start()
+    public class PlayerEditorSetup : NetworkBehaviour
     {
-        if (Object.HasInputAuthority)
+        private void Start()
         {
-            gameObject.name += " - Mine";
-            Selection.activeObject = transform;
-        }
-        else
-        {
-            gameObject.name += " - Other";
+            if (Object.HasInputAuthority)
+            {
+                gameObject.name += " - Mine";
+                Selection.activeObject = transform;
+            }
+            else
+            {
+                gameObject.name += " - Other";
+            }
         }
     }
 }
