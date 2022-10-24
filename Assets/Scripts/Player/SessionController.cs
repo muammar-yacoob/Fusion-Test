@@ -16,26 +16,26 @@ namespace Born.Player
     
         //[Networked(OnChanged = nameof(OnSessionPropertyChanged))] //can't use on Dictionary
         private Dictionary<string, SessionProperty> CustomProps = new();
-        private void Awake() => max = Enum.GetNames(typeof(Map)).Length;
+        private void Awake() => max = Enum.GetNames(typeof(Chapter)).Length;
 
         [ContextMenu("Next Stage")]
         public void GotoNextStage()
         {
-            CustomProps.Add(nameof(Stage), index);
+            CustomProps.Add(nameof(Lesson), index);
         
             index = index >= max ? 0 : index;
             index++;
         
-            Debug.Log($"Moving stage to: {((Stage)index).GetDescription()}");
+            Debug.Log($"Moving stage to: {((Lesson)index).GetDescription()}");
             Runner.SessionInfo.UpdateCustomProperties(CustomProps);
         }
 
         public static void OnSessionPropertyChanged(Changed<SessionController> changed) => changed.Behaviour.LogSessionChanges();
         private void LogSessionChanges()
         {
-            if (Runner.SessionInfo.Properties.TryGetValue(nameof(Stage), out var sessionStage) && sessionStage.IsInt)
+            if (Runner.SessionInfo.Properties.TryGetValue(nameof(Lesson), out var sessionStage) && sessionStage.IsInt)
             {
-                var currentStage = (Stage)sessionStage.PropertyValue;
+                var currentStage = (Lesson)sessionStage.PropertyValue;
                 Debug.Log($"Current Stage:{currentStage.GetDescription()}");
             }
         }

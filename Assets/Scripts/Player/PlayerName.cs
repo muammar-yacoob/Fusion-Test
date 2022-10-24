@@ -12,7 +12,17 @@ namespace Born.Player
         [HideInInspector] public NetworkString<_16> nickName { get; set; }
 
         //Set Default nickName
-        public override void Spawned() => nickNameText.text = Environment.UserName;
+        public override void Spawned()
+        {
+            if (Object.HasInputAuthority) // My player
+            {
+                nickNameText.text = Environment.UserName;
+            }
+            else
+            {
+                nickNameText.text = Runner.UserId;
+            }
+        }
 
         static void OnNickNameChanged(Changed<PlayerName> changed)=> changed.Behaviour.OnNickNameChanged();
         private void OnNickNameChanged()

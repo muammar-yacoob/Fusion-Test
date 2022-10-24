@@ -14,7 +14,7 @@ namespace Born.Core
     {
       if (runner.IsServer)
       {
-        NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, Vector3.up *5, transform.rotation, player);
+        NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, transform.position, transform.rotation, player);
         _spawnedCharacters.Add(player, networkPlayerObject);
       }
     }

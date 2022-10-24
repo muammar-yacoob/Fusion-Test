@@ -11,38 +11,43 @@ namespace Born.Player
     {
         public static event Action<MessageData> OnPlayerJoined =  delegate{};
 
-        private Map map = Map.Airport;
-        private Stage stage;
+        private Chapter _chapter = Chapter.Hanger;
+        private Lesson _lesson;
     
         public override void Spawned()
         {
-            if (Runner.SessionInfo.Properties.TryGetValue(nameof(Map), out var sessionMap) && sessionMap.IsInt)
+            if (Runner.SessionInfo.Properties.TryGetValue(nameof(Chapter), out var sessionMap) && sessionMap.IsInt)
             {
-                map = (Map) sessionMap.PropertyValue;
+                _chapter = (Chapter) sessionMap.PropertyValue;
             }
         
-            if (Runner.SessionInfo.Properties.TryGetValue(nameof(Stage), out var sessionStage) && sessionStage.IsInt)
+            if (Runner.SessionInfo.Properties.TryGetValue(nameof(Lesson), out var sessionStage) && sessionStage.IsInt)
             {
-                stage = (Stage)sessionStage.PropertyValue;
+                _lesson = (Lesson)sessionStage.PropertyValue;
             }
 
 
             string welcomeMessage;
-            if (Object.HasInputAuthority)
+            if (Object.HasInputAuthority) // My player
             {
                 //Local Player Setup
-                string mapName = Enum.GetName(typeof(Map), map);
-                string stageName = Enum.GetName(typeof(Stage), stage);
+                string mapName = Enum.GetName(typeof(Chapter), _chapter);
+                string stageName = Enum.GetName(typeof(Lesson), _lesson);
                 int playersCount = Runner.ActivePlayers.Count();
                 int playerMax = Runner.SessionInfo.MaxPlayers;
             
                 welcomeMessage = $"Welcome to {Runner.SessionInfo.Name} ({playersCount}/{playerMax} Players). Map: {mapName} Stage:{stageName}.";
+                
+                //remove unneccessary components
+                Destroy(gameObject.GetComponentInChildren<Billboard>().gameObject);
             }
-            else
+            else // Other players
             {
                 //Remote Player Setup
                 welcomeMessage = $"{Object.Id} joined";
-                //Destroy(gameObject.GetComponentInChildren<AnimationController>());
+                
+                //remove unneccessary components
+                Destroy(gameObject.GetComponentInChildren<PlayerAnimation>());
             }
         
             var msgData = new MessageData(welcomeMessage, Color.white);

@@ -6,7 +6,7 @@ namespace Born.Player
 {
     public class PlayerEditorSetup : NetworkBehaviour
     {
-        private void Start()
+        public override void Spawned()
         {
             if (Object.HasInputAuthority)
             {
