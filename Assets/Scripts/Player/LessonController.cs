@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using Born.Core;
 using Born.UI;
 using Fusion;
-using Fusion.Sockets;
 using UnityEditor;
 using UnityEngine;
 
 namespace Born.Player
 {
-    public class SessionController : NetworkBehaviour
+    public class LessonController : NetworkBehaviour
     {
         private int index = 0;
         private int max = 0;
@@ -30,24 +29,24 @@ namespace Born.Player
             Runner.SessionInfo.UpdateCustomProperties(CustomProps);
         }
 
-        public static void OnSessionPropertyChanged(Changed<SessionController> changed) => changed.Behaviour.LogSessionChanges();
+        public static void OnSessionPropertyChanged(Changed<LessonController> changed) => changed.Behaviour.LogSessionChanges();
         private void LogSessionChanges()
         {
-            if (Runner.SessionInfo.Properties.TryGetValue(nameof(Lesson), out var sessionStage) && sessionStage.IsInt)
+            if (Runner.SessionInfo.Properties.TryGetValue(nameof(Lesson), out var chapter) && chapter.IsInt)
             {
-                var currentStage = (Lesson)sessionStage.PropertyValue;
-                Debug.Log($"Current Stage:{currentStage.GetDescription()}");
+                var currentChapter = (Lesson)chapter.PropertyValue;
+                Debug.Log($"Current Stage:{currentChapter.GetDescription()}");
             }
         }
     }
 
 #if UNITY_EDITOR
-    [CustomEditor(typeof(SessionController))]
+    [CustomEditor(typeof(LessonController))]
     public class SessionControllerCustomInspector : Editor 
     {
         public override void OnInspectorGUI()
         {
-            SessionController myTarget = (SessionController)target;
+            LessonController myTarget = (LessonController)target;
             if(GUILayout.Button("Next Stage"))
                 myTarget.GotoNextStage();
         
