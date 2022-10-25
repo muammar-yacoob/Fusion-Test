@@ -4,6 +4,7 @@ using UnityEditor;
 
 namespace Born.Player
 {
+    [ScriptHelp(BackColor = EditorHeaderBackColor.Green)]
     public class PlayerEditorSetup : NetworkBehaviour
     {
 #if UNITY_EDITOR

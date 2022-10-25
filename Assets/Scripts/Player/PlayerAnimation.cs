@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace Born.Player
 {
+    [ScriptHelp(BackColor = EditorHeaderBackColor.Green)]
     public class PlayerAnimation : NetworkBehaviour
     {
-        private Animator animController;
+        private NetworkMecanimAnimator networkAnimator;
 
         private void Awake()
         {
-            animController = GetComponentInChildren<Animator>();
+            networkAnimator = GetComponentInChildren<NetworkMecanimAnimator>();
         }
 
         private void OnEnable()
@@ -28,7 +29,7 @@ namespace Born.Player
             if(!Object.HasInputAuthority) return;
             
             string animName = anim.GetDescription();
-            animController.SetTrigger(animName);
+            networkAnimator.SetTrigger(animName);
         }
     }
 }

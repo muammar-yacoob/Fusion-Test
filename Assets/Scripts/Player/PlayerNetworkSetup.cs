@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Born.Messaging;
 using Born.UI;
@@ -7,6 +8,7 @@ using UnityEngine;
 
 namespace Born.Player
 {
+    [ScriptHelp(BackColor = EditorHeaderBackColor.Green)]
     public class PlayerNetworkSetup : NetworkBehaviour
     {
         public static event Action<MessageData> OnPlayerJoined =  delegate{};
@@ -28,9 +30,11 @@ namespace Born.Player
 
 
             string welcomeMessage;
-            if (Object.HasInputAuthority) // My player
+            var typesToDestroy = new List<Type>();
+            
+            if (Object.HasInputAuthority) 
             {
-                //Local Player Setup
+                //Setting up [Local Player]
                 string mapName = Enum.GetName(typeof(Chapter), _chapter);
                 string stageName = Enum.GetName(typeof(Lesson), _lesson);
                 int playersCount = Runner.ActivePlayers.Count();
@@ -38,20 +42,44 @@ namespace Born.Player
             
                 welcomeMessage = $"Welcome to {Runner.SessionInfo.Name} ({playersCount}/{playerMax} Players). Map: {mapName} Stage:{stageName}.";
                 
-                //remove unneccessary components
-                Destroy(gameObject.GetComponentInChildren<Billboard>().gameObject);
+                //Removing unnecessary components
+                typesToDestroy.Add(typeof(Billboard));
+                //Add other types here
+                
+                if (typesToDestroy.Count > 0)
+                {
+                    DestroyComponents(typesToDestroy);
+                }
             }
-            else // Other players
+            else
             {
-                //Remote Player Setup
+                //Setting up [Remote Player]
                 welcomeMessage = $"{Object.Id} joined";
                 
-                //remove unneccessary components
-                //Destroy(gameObject.GetComponentInChildren<PlayerAnimation>());
+                //Removing unnecessary components
+                typesToDestroy.Add(typeof(PlayerAnimation));
+                //Add other types here
+                
+                if (typesToDestroy.Count > 0)
+                {
+                    DestroyComponents(typesToDestroy);
+                }
             }
         
             var msgData = new MessageData(welcomeMessage, Color.white);
             OnPlayerJoined?.Invoke(msgData);
+        }
+
+        private void DestroyComponents(List<Type> typesToRemove)
+        {
+            var comps = GetComponents<Component>();
+            foreach (var comp in comps)
+            {
+                if(typesToRemove.Contains(comp.GetType()))
+                {
+                    Destroy(comp);
+                }
+            }
         }
 
         public override void Despawned(NetworkRunner runner, bool hasState)

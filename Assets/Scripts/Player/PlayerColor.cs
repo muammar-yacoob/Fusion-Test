@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Born.Player
 {
     [RequireComponent(typeof(NetworkObject))]
+    [ScriptHelp(BackColor = EditorHeaderBackColor.Green)]
     public class PlayerColor : NetworkBehaviour
     {
         [SerializeField] private Color[] playerColors;

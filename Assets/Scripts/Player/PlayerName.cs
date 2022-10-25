@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Born.Player
 {
+    [ScriptHelp(BackColor = EditorHeaderBackColor.Green)]
     public class PlayerName : NetworkBehaviour
     {
         [SerializeField] private TMP_Text nickNameText;

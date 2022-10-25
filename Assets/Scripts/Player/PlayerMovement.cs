@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Born.Player
 {
     [RequireComponent(typeof(NetworkCharacterControllerPrototype))]
+    [ScriptHelp(BackColor = EditorHeaderBackColor.Green)]
     public class PlayerMovement : NetworkBehaviour
     {
         private NetworkCharacterControllerPrototype _cc;
