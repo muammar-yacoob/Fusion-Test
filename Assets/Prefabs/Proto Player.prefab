@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7271541897570031400}
   - component: {fileID: 4058276878532893942}
-  - component: {fileID: 8118007790715170810}
+  - component: {fileID: 3145701288908477075}
   m_Layer: 0
   m_Name: Face_1
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8118007790715170810
+--- !u!95 &3145701288908477075
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -118,11 +118,11 @@ GameObject:
   - component: {fileID: -3886899258973277075}
   - component: {fileID: -4070961065562238321}
   - component: {fileID: 2635567042374937776}
+  - component: {fileID: 6166546358527539555}
   - component: {fileID: -3245453224156861013}
   - component: {fileID: -4286602358424034674}
   - component: {fileID: 4692125400483872919}
   - component: {fileID: 6921905595300635941}
-  - component: {fileID: 6166546358527539555}
   - component: {fileID: -1047885032647000012}
   m_Layer: 0
   m_Name: Proto Player
@@ -172,11 +172,11 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: -4070961065562238321}
   - {fileID: 2635567042374937776}
+  - {fileID: 6166546358527539555}
   - {fileID: -3245453224156861013}
   - {fileID: -4286602358424034674}
   - {fileID: 4692125400483872919}
   - {fileID: 6921905595300635941}
-  - {fileID: 6166546358527539555}
   - {fileID: -1047885032647000012}
   SimulationBehaviours: []
 --- !u!143 &-3886899258973277075
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  Animator: {fileID: 8118007790715170810}
+  Animator: {fileID: 3145701288908477075}
   TotalWords: 1
   SyncSettings: 12
   FloatAccuracy:
@@ -261,6 +261,19 @@ MonoBehaviour:
     _hash: -814817977
   StateHashes: 00000000166615569245c3b928a981077af3fe2e5a51641619ff57151ae6174d48bc68642b1a167c79406955
   TriggerHashes: 0000000028a981075a51641637b93501
+--- !u!114 &6166546358527539555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814108640839663173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5052810cec7c45c5b819b24c0e6dd35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
 --- !u!114 &-3245453224156861013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,19 +333,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45771a587235c8344ad405146b9fc80a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
---- !u!114 &6166546358527539555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814108640839663173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5052810cec7c45c5b819b24c0e6dd35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0

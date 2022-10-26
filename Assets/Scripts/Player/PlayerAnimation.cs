@@ -5,31 +5,37 @@ using UnityEngine;
 namespace Born.Player
 {
     [ScriptHelp(BackColor = EditorHeaderBackColor.Green)]
+    [RequireComponent(typeof(NetworkMecanimAnimator))]
     public class PlayerAnimation : NetworkBehaviour
     {
         private NetworkMecanimAnimator networkAnimator;
+        private Animator localAnimator;
 
-        private void Awake()
+        public override void Spawned()
         {
-            networkAnimator = GetComponentInChildren<NetworkMecanimAnimator>();
-        }
-
-        private void OnEnable()
-        {
+            base.Spawned();
+            networkAnimator = GetComponent<NetworkMecanimAnimator>();
+            localAnimator = GetComponentInChildren<Animator>();
             PlayerMovement.OnAnim += Handle_OnAnim;
         }
-    
-        private void OnDisable()
+
+        public override void Despawned(NetworkRunner runner, bool hasState)
         {
+            base.Despawned(runner, hasState);
             PlayerMovement.OnAnim -= Handle_OnAnim;
         }
 
         private void Handle_OnAnim(Anim anim)
         {
-            if(!Object.HasInputAuthority) return;
-            
             string animName = anim.GetDescription();
-            networkAnimator.SetTrigger(animName);
+            if (Object.HasInputAuthority)
+            {
+                localAnimator.SetTrigger(animName);
+            }
+            else
+            {
+                networkAnimator.SetTrigger(animName, true);
+            }
         }
     }
 }

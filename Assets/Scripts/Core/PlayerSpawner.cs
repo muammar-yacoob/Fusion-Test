@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
@@ -14,7 +15,9 @@ namespace Born.Core
     {
       if (runner.IsServer)
       {
-        NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, transform.position, transform.rotation, player);
+        var pos = transform.position + Vector3.up * runner.ActivePlayers.Count();
+        var rot = transform.rotation;
+        NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, pos, rot, player);
         _spawnedCharacters.Add(player, networkPlayerObject);
       }
     }
