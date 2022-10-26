@@ -13,7 +13,10 @@ namespace Born.Player
         private Material mat;
         private Color targetColor;
 
+        //https://doc.photonengine.com/en-us/fusion/current/manual/network-object/network-behaviour#allowed_types
         [Networked(OnChanged = nameof(OnColorChanged))] int colorIndex { get; set; }
+        [Networked] public NetworkButtons ButtonsPrevious { get; set; }
+
 
         public override void Spawned()
         {
@@ -24,7 +27,6 @@ namespace Born.Player
             SetColor();
         }
     
-        [Networked] public NetworkButtons ButtonsPrevious { get; set; }
         public override void FixedUpdateNetwork()
         {
             if (GetInput<NetworkInputData>(out var netInput) == false) return;

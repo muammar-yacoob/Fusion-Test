@@ -8,13 +8,14 @@ using UnityEngine;
 
 namespace Born.Player
 {
-    public class LessonController : NetworkBehaviour
+    public class SessionData : NetworkBehaviour
     {
         private int index = 0;
         private int max = 0;
     
-        //[Networked(OnChanged = nameof(OnSessionPropertyChanged))] //can't use on Dictionary
-        private Dictionary<string, SessionProperty> CustomProps = new();
+        //Allowed Types: https://doc.photonengine.com/en-us/fusion/current/manual/network-object/network-behaviour#allowed_types
+        [Networked(OnChanged = nameof(OnSessionPropertyChanged))]
+        private NetworkDictionary<string, SessionProperty> CustomProps{ get; set; }
         private void Awake() => max = Enum.GetNames(typeof(Chapter)).Length;
 
         [ContextMenu("Next Stage")]
@@ -29,7 +30,7 @@ namespace Born.Player
             Runner.SessionInfo.UpdateCustomProperties(CustomProps);
         }
 
-        public static void OnSessionPropertyChanged(Changed<LessonController> changed) => changed.Behaviour.LogSessionChanges();
+        public static void OnSessionPropertyChanged(Changed<SessionData> changed) => changed.Behaviour.LogSessionChanges();
         private void LogSessionChanges()
         {
             if (Runner.SessionInfo.Properties.TryGetValue(nameof(Lesson), out var chapter) && chapter.IsInt)
@@ -41,12 +42,12 @@ namespace Born.Player
     }
 
 #if UNITY_EDITOR
-    [CustomEditor(typeof(LessonController))]
+    [CustomEditor(typeof(SessionData))]
     public class SessionControllerCustomInspector : Editor 
     {
         public override void OnInspectorGUI()
         {
-            LessonController myTarget = (LessonController)target;
+            SessionData myTarget = (SessionData)target;
             if(GUILayout.Button("Next Stage"))
                 myTarget.GotoNextStage();
         
