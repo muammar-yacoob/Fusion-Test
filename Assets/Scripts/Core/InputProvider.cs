@@ -27,13 +27,16 @@ namespace Born.Core
             var localX = _playerActionMap.gameplay.move.ReadValue<Vector2>().x;
             var localZ = _playerActionMap.gameplay.move.ReadValue<Vector2>().y;
 
-            //Sending input over network
             var tmpInput = new NetworkInputData();
-        
+            
+            //Mapping buttons
             tmpInput.Direction.Set(localX, 0, localZ);
             tmpInput.Buttons.Set(MyButtons.Color, _playerActionMap.gameplay.color.IsPressed());
             tmpInput.Buttons.Set(MyButtons.Jump, _playerActionMap.gameplay.jump.IsPressed());
+            tmpInput.Buttons.Set(MyButtons.NextChapter, _playerActionMap.gameplay.nextChapter.IsPressed());
+            tmpInput.Buttons.Set(MyButtons.PreviousChapter, _playerActionMap.gameplay.previousChapter.IsPressed());
         
+            //Sending input over network
             netInput.Set(tmpInput);
         }
 

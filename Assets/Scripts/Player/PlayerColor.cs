@@ -35,7 +35,6 @@ namespace Born.Player
             var released = netInput.Buttons.GetReleased(ButtonsPrevious);
 
             ButtonsPrevious = netInput.Buttons;
-
             if (pressed.IsSet(MyButtons.Color))
             {
                 colorIndex++;

@@ -2,20 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c101365-9dd2-48b5-b279-d390463c972a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Session.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Session/AvailableSessions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Session/AvailableSessions.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Session/SessionMonitor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Session/SessionMonitor.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fusion-Test/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fusion-Test/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Proto Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Proto Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Samples/Input System/1.4.3/Simple Demo/SimpleControls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/Input System/1.4.3/Simple Demo/SimpleControls.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Samples/Input System/1.4.3/Simple Demo/SimpleControls.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/Input System/1.4.3/Simple Demo/SimpleControls.inputactions" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/BornUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/BornUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerAnimation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerName.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerName.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerNetworkSetup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerNetworkSetup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/SessionData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Session/SessionData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/SessionData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Session/SessionData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/InputProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/InputProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/NetworkInputData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/NetworkInputData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerColor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerColor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Session/AvailableSessions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Session/SessionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Session/AvailableSessions.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Session/SessionController.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/ProtoMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ProtoMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +28,7 @@
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1dfe0a4986e145bdabd295a82dd1ea8b8cc00/5a/08ca393d/NetworkBool.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1dfe0a4986e145bdabd295a82dd1ea8b8cc00/7d/5e7b9400/MultiPropertyDrawersFixAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1dfe0a4986e145bdabd295a82dd1ea8b8cc00/ad/722b66e4/PropertyAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1dfe0a4986e145bdabd295a82dd1ea8b8cc00/d5/56d9adf4/SimulationBehaviourUpdater.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1dfe0a4986e145bdabd295a82dd1ea8b8cc00/df/f9a60269/SessionInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Photon/Fusion/Scripts/Editor/Fusion.Editor.cs" root0="SKIP_HIGHLIGHTING" />

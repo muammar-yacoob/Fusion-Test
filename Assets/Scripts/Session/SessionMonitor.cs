@@ -8,19 +8,11 @@ using UnityEngine;
 
 namespace Born.Session
 {
-    public class AvailableSessions: NetworkBehaviour, INetworkRunnerCallbacks
+    public class SessionMonitor: NetworkBehaviour, INetworkRunnerCallbacks
     {
-        public override void Spawned()
-        {
-            print("Avialable sessions registered");
-            Runner.AddCallbacks(this);
-        }
-
-        private void OnDestroy()
-        {
-            Runner.RemoveCallbacks(this);
-        }
-
+        public override void Spawned() => Runner.AddCallbacks(this);
+        public override void Despawned(NetworkRunner runner, bool hasState) => runner.RemoveCallbacks(this);
+    
         public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
         {
             Debug.Log($"Session List Updated: Count:{sessionList.Count}");

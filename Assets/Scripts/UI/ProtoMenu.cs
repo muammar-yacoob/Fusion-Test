@@ -11,13 +11,9 @@ namespace Born.UI
 {
     public class ProtoMenu : MonoBehaviour
     {
-        private NetworkRunner _runner;
+        private NetworkRunner runner;
         private const string LobbyName = "LOB";
-        private string _roomName = "Default";
-
-        private void Start()
-        {
-        }
+        private string sessionName = "Default";
 
         #region UI
         private void OnGUI()
@@ -28,12 +24,12 @@ namespace Born.UI
 
         private void DrawHud()
         {
-            if (_runner != null) return;
+            if (runner != null) return;
 
-            _roomName = GUI.TextField(new Rect(10, 10, 120, 20), _roomName, 10);
+            sessionName = GUI.TextField(new Rect(10, 10, 120, 20), sessionName, 10);
 
-            if (_roomName.IsNullOrEmpty()) return;
-            if (GUI.Button(new Rect(10, 33, 120, 20), $"Start/Join {_roomName}"))
+            if (sessionName.IsNullOrEmpty()) return;
+            if (GUI.Button(new Rect(10, 33, 120, 20), $"Start/Join {sessionName}"))
             {
                 Play(GameMode.AutoHostOrClient, Chapter.Hanger, Lesson.Intro);
             }
@@ -41,9 +37,9 @@ namespace Born.UI
 
         private void DrawInstructions()
         {
-            if (_runner == null) return;
+            if (runner == null) return;
 
-            string instructions = "CTRL: Color, SpaceBar: Jump";
+            string instructions = "CTRL: Color, SpaceBar: Jump, ]&[: to switch Chapters";
             Vector2 lableSize = new GUIStyle().CalcSize(new GUIContent(instructions));
             Rect r = new Rect(10, Screen.height - 50, lableSize.x * 1.1f, lableSize.y * 1.5f);
             GUI.contentColor = Color.white;
@@ -51,24 +47,20 @@ namespace Born.UI
         }
         #endregion
         
-        public async Task JoinLobby(NetworkRunner runner) {
-
-            var result = await runner.JoinSessionLobby(SessionLobby.ClientServer);
+        async void Play(GameMode mode, Chapter chapter, Lesson lesson)
+        {
+            runner = gameObject.AddComponent<NetworkRunner>();
+            //Join a lobby for the machmaker
+            var result = await runner.JoinSessionLobby(SessionLobby.Custom,LobbyName);
 
             if (!result.Ok)
             {
-                Debug.LogError($"Failed to Start: {result.ShutdownReason}");
+                Debug.LogError($"Failed to Join Lobby: {result.ShutdownReason}");
                 return;
             }
-        }
 
-        async void Play(GameMode mode, Chapter chapter, Lesson lesson)
-        {
-            _runner = gameObject.AddComponent<NetworkRunner>();
-            //Join a lobby for the machmaker
-            await _runner.JoinSessionLobby(SessionLobby.Custom,LobbyName);
-
-            _runner.ProvideInput = true;
+            print($"Lobby {LobbyName} joined");
+            runner.ProvideInput = true;
             
             var customProps = new Dictionary<string, SessionProperty>()
             {
@@ -79,11 +71,11 @@ namespace Born.UI
             var sceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>();
             var sceneIndex = SceneManager.GetActiveScene().buildIndex;
             
-            var result = await _runner.StartGame(new StartGameArgs()
+            result = await runner.StartGame(new StartGameArgs()
             {
                 GameMode = mode,
                 CustomLobbyName = LobbyName,
-                SessionName = _roomName,
+                SessionName = sessionName,
                 Scene = sceneIndex,
                 SceneManager = sceneManager,
                 PlayerCount = 4,
@@ -93,7 +85,10 @@ namespace Born.UI
             if (!result.Ok)
             {
                 Debug.LogError($"Failed to Start: {result.ShutdownReason}");
+                return;
             }
+            
+            print($"Session {sessionName} joined");
         }
     }
 }

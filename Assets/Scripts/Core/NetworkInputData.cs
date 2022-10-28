@@ -13,5 +13,7 @@ namespace Born.Core
     public enum MyButtons {
         Jump = 0,
         Color = 1,
+        NextChapter = 2,
+        PreviousChapter = 3,
     }
 }

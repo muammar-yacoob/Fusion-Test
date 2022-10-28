@@ -24,6 +24,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "nextChapter",
+                    "type": "Button",
+                    "id": "918258b2-0cdb-49bd-85f6-0dd1d2536e4a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap,SlowTap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "previousChapter",
+                    "type": "Button",
+                    "id": "6e55fb11-1b12-4f1e-a11f-dd2abe41ef2f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap,SlowTap",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "move",
                     "type": "Value",
                     "id": "50fd2809-3aa3-4a90-988e-1facf6773553",
@@ -150,6 +168,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e947271c-529d-4f83-9f92-4ef1e1986cf1",
+                    "path": "<Keyboard>/rightBracket",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "nextChapter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b761e66c-4986-47c7-805d-59ee66561aec",
+                    "path": "<Keyboard>/leftBracket",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "previousChapter",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

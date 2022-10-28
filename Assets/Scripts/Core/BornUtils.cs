@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
@@ -43,6 +44,16 @@ namespace Born.Core
             }
 
             return name;
+        }
+        
+        public static T GetNext<T>(this T value) where T : struct
+        {
+            return Enum.GetValues(value.GetType()).Cast<T>().Concat(new[] { default(T) }).SkipWhile(e => !value.Equals(e)).Skip(1).First();
+        }
+
+        public static T GetPrevious<T>(this T v) where T : struct
+        {
+            return Enum.GetValues(v.GetType()).Cast<T>().Concat(new[] { default(T) }).Reverse().SkipWhile(e => !v.Equals(e)).Skip(1).First();
         }
     }
 }

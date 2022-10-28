@@ -1,0 +1,45 @@
+using System.Collections.Generic;
+using Born.Core;
+using Fusion;
+
+namespace Born.Session
+{
+    [ScriptHelp(BackColor = EditorHeaderBackColor.Green)]
+    public class SessionController: NetworkBehaviour
+    {
+        [Networked] public NetworkButtons ButtonsPrevious { get; set; }
+
+        private Chapter currentChapter = Chapter.Hanger;
+        public override void FixedUpdateNetwork()
+        {
+            if (GetInput<NetworkInputData>(out var netInput) == false) return;
+        
+            var pressed = netInput.Buttons.GetPressed(ButtonsPrevious);
+            var released = netInput.Buttons.GetReleased(ButtonsPrevious);
+
+            ButtonsPrevious = netInput.Buttons;
+
+            if (!(pressed.IsSet(MyButtons.NextChapter) || pressed.IsSet(MyButtons.PreviousChapter))) return;
+
+            if (pressed.IsSet(MyButtons.NextChapter))
+            {
+                currentChapter = currentChapter.GetNext();
+            }
+            
+            if (pressed.IsSet(MyButtons.PreviousChapter))
+            {
+                currentChapter = currentChapter.GetPrevious();
+            }
+            
+            print($"Setting Chapter to: {currentChapter.GetName()}");
+
+            var customProps = new Dictionary<string, SessionProperty>()
+                {
+                    { nameof(Chapter), (int)currentChapter},
+                    { nameof(Lesson), (int)Lesson.Intro }
+                };
+
+            Runner.SessionInfo.UpdateCustomProperties(customProps);
+        }
+    }
+}

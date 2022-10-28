@@ -46,6 +46,24 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""nextChapter"",
+                    ""type"": ""Button"",
+                    ""id"": ""918258b2-0cdb-49bd-85f6-0dd1d2536e4a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap,SlowTap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""previousChapter"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e55fb11-1b12-4f1e-a11f-dd2abe41ef2f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap,SlowTap"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""move"",
                     ""type"": ""Value"",
                     ""id"": ""50fd2809-3aa3-4a90-988e-1facf6773553"",
@@ -174,6 +192,28 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""action"": ""jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e947271c-529d-4f83-9f92-4ef1e1986cf1"",
+                    ""path"": ""<Keyboard>/rightBracket"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""nextChapter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b761e66c-4986-47c7-805d-59ee66561aec"",
+                    ""path"": ""<Keyboard>/leftBracket"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""previousChapter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -184,6 +224,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
         m_gameplay = asset.FindActionMap("gameplay", throwIfNotFound: true);
         m_gameplay_color = m_gameplay.FindAction("color", throwIfNotFound: true);
         m_gameplay_jump = m_gameplay.FindAction("jump", throwIfNotFound: true);
+        m_gameplay_nextChapter = m_gameplay.FindAction("nextChapter", throwIfNotFound: true);
+        m_gameplay_previousChapter = m_gameplay.FindAction("previousChapter", throwIfNotFound: true);
         m_gameplay_move = m_gameplay.FindAction("move", throwIfNotFound: true);
         m_gameplay_look = m_gameplay.FindAction("look", throwIfNotFound: true);
     }
@@ -247,6 +289,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_gameplay_color;
     private readonly InputAction m_gameplay_jump;
+    private readonly InputAction m_gameplay_nextChapter;
+    private readonly InputAction m_gameplay_previousChapter;
     private readonly InputAction m_gameplay_move;
     private readonly InputAction m_gameplay_look;
     public struct GameplayActions
@@ -255,6 +299,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
         public GameplayActions(@SimpleControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @color => m_Wrapper.m_gameplay_color;
         public InputAction @jump => m_Wrapper.m_gameplay_jump;
+        public InputAction @nextChapter => m_Wrapper.m_gameplay_nextChapter;
+        public InputAction @previousChapter => m_Wrapper.m_gameplay_previousChapter;
         public InputAction @move => m_Wrapper.m_gameplay_move;
         public InputAction @look => m_Wrapper.m_gameplay_look;
         public InputActionMap Get() { return m_Wrapper.m_gameplay; }
@@ -272,6 +318,12 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 @jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @nextChapter.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnNextChapter;
+                @nextChapter.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnNextChapter;
+                @nextChapter.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnNextChapter;
+                @previousChapter.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPreviousChapter;
+                @previousChapter.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPreviousChapter;
+                @previousChapter.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPreviousChapter;
                 @move.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @move.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @move.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
@@ -288,6 +340,12 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 @jump.started += instance.OnJump;
                 @jump.performed += instance.OnJump;
                 @jump.canceled += instance.OnJump;
+                @nextChapter.started += instance.OnNextChapter;
+                @nextChapter.performed += instance.OnNextChapter;
+                @nextChapter.canceled += instance.OnNextChapter;
+                @previousChapter.started += instance.OnPreviousChapter;
+                @previousChapter.performed += instance.OnPreviousChapter;
+                @previousChapter.canceled += instance.OnPreviousChapter;
                 @move.started += instance.OnMove;
                 @move.performed += instance.OnMove;
                 @move.canceled += instance.OnMove;
@@ -302,6 +360,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
     {
         void OnColor(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnNextChapter(InputAction.CallbackContext context);
+        void OnPreviousChapter(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
     }
