@@ -51,7 +51,7 @@ namespace Born.Player
         [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.All)]
         private void RPC_Jump(byte byteAnim,RpcInfo info = default){
             var anim = (Anim)byteAnim;
-            print($"{info.Source}:{anim.GetDescription()}");
+            //print($"{info.Source}:{anim.GetDescription()}");
             
             OnAnim?.Invoke(anim);
         }

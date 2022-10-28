@@ -1,3 +1,4 @@
+using Born.Core;
 using Fusion;
 using Fusion.Editor;
 using UnityEngine;
@@ -27,7 +28,7 @@ namespace Born.Player
 
         private void Handle_OnAnim(Anim anim)
         {
-            string animName = anim.GetDescription();
+            string animName = anim.GetName();
             if (Object.HasInputAuthority)
             {
                 localAnimator.SetTrigger(animName);

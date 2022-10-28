@@ -1,5 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Born.Session;
 using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,8 +12,14 @@ namespace Born.UI
     public class ProtoMenu : MonoBehaviour
     {
         private NetworkRunner _runner;
+        private const string LobbyName = "LOB";
         private string _roomName = "Default";
 
+        private void Start()
+        {
+        }
+
+        #region UI
         private void OnGUI()
         {
             DrawHud();
@@ -27,7 +35,7 @@ namespace Born.UI
             if (_roomName.IsNullOrEmpty()) return;
             if (GUI.Button(new Rect(10, 33, 120, 20), $"Start/Join {_roomName}"))
             {
-                StartGame(GameMode.AutoHostOrClient, Chapter.Hanger, Lesson.Intro);
+                Play(GameMode.AutoHostOrClient, Chapter.Hanger, Lesson.Intro);
             }
         }
 
@@ -41,49 +49,51 @@ namespace Born.UI
             GUI.contentColor = Color.white;
             GUI.Box(r, instructions);
         }
+        #endregion
+        
+        public async Task JoinLobby(NetworkRunner runner) {
 
-        void GetMad()
-        {
-            print("mad");
+            var result = await runner.JoinSessionLobby(SessionLobby.ClientServer);
+
+            if (!result.Ok)
+            {
+                Debug.LogError($"Failed to Start: {result.ShutdownReason}");
+                return;
+            }
         }
 
-        async void StartGame(GameMode mode, Chapter chapter, Lesson lesson)
+        async void Play(GameMode mode, Chapter chapter, Lesson lesson)
         {
             _runner = gameObject.AddComponent<NetworkRunner>();
-            _runner.ProvideInput = true;
+            //Join a lobby for the machmaker
+            await _runner.JoinSessionLobby(SessionLobby.Custom,LobbyName);
 
+            _runner.ProvideInput = true;
+            
             var customProps = new Dictionary<string, SessionProperty>()
             {
                 { nameof(Chapter), (int)Chapter.Hanger },
                 { nameof(Lesson), (int)Lesson.Intro }
             };
 
-            await _runner.StartGame(new StartGameArgs()
+            var sceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>();
+            var sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            
+            var result = await _runner.StartGame(new StartGameArgs()
             {
                 GameMode = mode,
+                CustomLobbyName = LobbyName,
                 SessionName = _roomName,
-                Scene = SceneManager.GetActiveScene().buildIndex,
-                SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
+                Scene = sceneIndex,
+                SceneManager = sceneManager,
                 PlayerCount = 4,
                 SessionProperties = customProps
             });
+
+            if (!result.Ok)
+            {
+                Debug.LogError($"Failed to Start: {result.ShutdownReason}");
+            }
         }
-    }
-
-    public enum Chapter
-    {
-        Hanger,
-        Runway,
-        EngineRoom,
-        Garage
-    }
-
-    public enum Lesson
-    {
-        Intro,
-        IDG,
-        APU,
-        DC,
-        GPU
     }
 }

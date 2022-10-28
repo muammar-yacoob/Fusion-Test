@@ -25,7 +25,7 @@ namespace Born.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static String GetDescription(this Enum value)
+        public static String GetName(this Enum value)
         {
             Type type = value.GetType();
             string name = Enum.GetName(type, value);

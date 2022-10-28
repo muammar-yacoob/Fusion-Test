@@ -1,12 +1,10 @@
 using System;
-using System.Collections.Generic;
 using Born.Core;
-using Born.UI;
 using Fusion;
 using UnityEditor;
 using UnityEngine;
 
-namespace Born.Player
+namespace Born.Session
 {
     public class SessionData : NetworkBehaviour
     {
@@ -26,7 +24,7 @@ namespace Born.Player
             index = index >= max ? 0 : index;
             index++;
         
-            Debug.Log($"Moving stage to: {((Lesson)index).GetDescription()}");
+            Debug.Log($"Moving stage to: {((Lesson)index).GetName()}");
             //Runner.SessionInfo.UpdateCustomProperties(CustomProps);
         }
 
@@ -36,10 +34,29 @@ namespace Born.Player
             if (Runner.SessionInfo.Properties.TryGetValue(nameof(Lesson), out var chapter) && chapter.IsInt)
             {
                 var currentChapter = (Lesson)chapter.PropertyValue;
-                Debug.Log($"Current Stage:{currentChapter.GetDescription()}");
+                Debug.Log($"Current Stage:{currentChapter.GetName()}");
             }
         }
     }
+    
+    public enum Chapter
+    {
+        Hanger,
+        Runway,
+        EngineRoom,
+        Garage
+    }
+
+    public enum Lesson
+    {
+        Intro,
+        IDG,
+        APU,
+        DC,
+        GPU
+    }
+    
+    #region Editor 
 
 #if UNITY_EDITOR
     [CustomEditor(typeof(SessionData))]
@@ -56,4 +73,5 @@ namespace Born.Player
         }
     }
 #endif
+    #endregion
 }
