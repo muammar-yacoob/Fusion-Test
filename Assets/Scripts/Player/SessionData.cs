@@ -14,7 +14,7 @@ namespace Born.Player
         private int max = 0;
     
         //Allowed Types: https://doc.photonengine.com/en-us/fusion/current/manual/network-object/network-behaviour#allowed_types
-        [Networked(OnChanged = nameof(OnSessionPropertyChanged))]
+        //[Networked(OnChanged = nameof(OnSessionPropertyChanged))]
         private NetworkDictionary<string, SessionProperty> CustomProps{ get; set; }
         private void Awake() => max = Enum.GetNames(typeof(Chapter)).Length;
 
@@ -27,7 +27,7 @@ namespace Born.Player
             index++;
         
             Debug.Log($"Moving stage to: {((Lesson)index).GetDescription()}");
-            Runner.SessionInfo.UpdateCustomProperties(CustomProps);
+            //Runner.SessionInfo.UpdateCustomProperties(CustomProps);
         }
 
         public static void OnSessionPropertyChanged(Changed<SessionData> changed) => changed.Behaviour.LogSessionChanges();

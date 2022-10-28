@@ -18,6 +18,7 @@ namespace Born.Player
 
         public override void FixedUpdateNetwork()
         {
+            
             if (GetInput<NetworkInputData>(out var netInput) == false) return;
 
             //netInput.Direction.Normalize();
@@ -39,8 +40,20 @@ namespace Born.Player
                 //Jump
                 if (!_cc.IsGrounded || _cc.Velocity.y > 0) return;
                 _cc.Velocity = Vector3.up * jumpHight;
-                OnAnim?.Invoke(Anim.Jump);
+
+                if (Object.HasInputAuthority)
+                {
+                    RPC_Jump((byte)Anim.Jump);
+                }
             }
+        }
+        
+        [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.All)]
+        private void RPC_Jump(byte byteAnim,RpcInfo info = default){
+            var anim = (Anim)byteAnim;
+            print($"{info.Source}:{anim.GetDescription()}");
+            
+            OnAnim?.Invoke(anim);
         }
     
         private void ResetIfDropped()
