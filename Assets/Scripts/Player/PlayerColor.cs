@@ -44,6 +44,7 @@ namespace Born.Player
     
         public override void Render()
         {
+            if (mat == null) return;
             if(mat.color == targetColor) return;
         
             if (Object.HasInputAuthority)

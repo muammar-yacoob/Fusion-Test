@@ -36,12 +36,12 @@ namespace Born.Player
             if (Object.HasInputAuthority) 
             {
                 //Setting up [Local Player]
-                string mapName = Enum.GetName(typeof(Chapter), _chapter);
-                string stageName = Enum.GetName(typeof(Lesson), _lesson);
+                string chapter = Enum.GetName(typeof(Chapter), _chapter);
+                string lesson = Enum.GetName(typeof(Lesson), _lesson);
                 int playersCount = Runner.ActivePlayers.Count();
-                int playerMax = Runner.SessionInfo.MaxPlayers;
+                int playersMax =  Runner.SessionInfo.MaxPlayers;
             
-                welcomeMessage = $"Welcome to {Runner.SessionInfo.Name} ({playersCount}/{playerMax} Players). Map: {mapName} Stage:{stageName}.";
+                welcomeMessage = $"Welcome to {Runner.SessionInfo.Name} ({playersCount}/{playersMax} Players). Chapter: {chapter}.";
                 
                 //Removing unnecessary components
                 typesToDestroy.Add(typeof(Billboard));

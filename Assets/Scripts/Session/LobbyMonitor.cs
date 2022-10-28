@@ -8,34 +8,28 @@ using UnityEngine;
 
 namespace Born.Session
 {
-    public class SessionMonitor: NetworkBehaviour, INetworkRunnerCallbacks
+    public class LobbyMonitor: NetworkBehaviour, INetworkRunnerCallbacks
     {
         public override void Spawned() => Runner.AddCallbacks(this);
         public override void Despawned(NetworkRunner runner, bool hasState) => runner.RemoveCallbacks(this);
     
         public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
         {
-            Debug.Log($"Session List Updated: Count:{sessionList.Count}");
+            Debug.Log($"Sessions List Updated: Count:{sessionList.Count}");
             if (sessionList.Count == 0) return;
             
             foreach (var session in sessionList)
             {
-                //if (!session.IsValid) return;
-                
-                Chapter currentChapter = Chapter.Hanger;
-                Lesson currentLesson = Lesson.Intro;
+                if (!session.IsValid) return;
+
+                Chapter currentChapter = default;
 
                 if(session.Properties.TryGetValue(nameof(Chapter),out var tmpProperty) && tmpProperty.IsType<Chapter>())
                 {
                     currentChapter = (Chapter)tmpProperty.PropertyValue;
                 }
                 
-                if(session.Properties.TryGetValue(nameof(Lesson),out tmpProperty) && tmpProperty.IsType<Lesson>())
-                {
-                    currentLesson = (Lesson)tmpProperty.PropertyValue;
-                }
-                
-                Debug.Log($"{session.Name}: Players({session.PlayerCount},{session.MaxPlayers}), Stage:{currentChapter.GetName()}/{currentLesson.GetName()}");
+                Debug.Log($"{session.Name}: Players({session.PlayerCount},{session.MaxPlayers}), Chapter:{currentChapter.GetName()}");
             }
         }
 

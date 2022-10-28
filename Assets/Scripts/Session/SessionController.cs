@@ -39,8 +39,7 @@ namespace Born.Session
             var customProps = new Dictionary<string, SessionProperty>()
             {
                 { nameof(Chapter), (int)currentChapter },
-                { nameof(Lesson), (int)Lesson.Intro },
-                { "SessionName", Runner.SessionInfo.Name },
+                { nameof(Lesson), (int)Lesson.Intro }
             };
 
             Runner.SessionInfo.UpdateCustomProperties(customProps);
