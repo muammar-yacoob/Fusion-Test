@@ -62,5 +62,5 @@ namespace Born.Player
                 _cc.transform.position = Vector3.up * 5;
         }
     }
-    public enum Anim{Jump,Damage,Talk,Die}
+    
 }

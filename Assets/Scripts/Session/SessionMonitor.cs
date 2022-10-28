@@ -16,10 +16,11 @@ namespace Born.Session
         public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
         {
             Debug.Log($"Session List Updated: Count:{sessionList.Count}");
+            if (sessionList.Count == 0) return;
             
             foreach (var session in sessionList)
             {
-                if (!session.IsValid) return;
+                //if (!session.IsValid) return;
                 
                 Chapter currentChapter = Chapter.Hanger;
                 Lesson currentLesson = Lesson.Intro;

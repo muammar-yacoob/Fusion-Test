@@ -39,4 +39,5 @@ namespace Born.Player
             }
         }
     }
+        public enum Anim{Jump,Damage,Talk,Die}
 }

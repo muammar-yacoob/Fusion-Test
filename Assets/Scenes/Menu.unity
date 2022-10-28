@@ -137,7 +137,6 @@ GameObject:
   - component: {fileID: 119298385}
   - component: {fileID: 119298387}
   - component: {fileID: 119298388}
-  - component: {fileID: 119298389}
   - component: {fileID: 119298390}
   m_Layer: 0
   m_Name: Connection Manager
@@ -211,19 +210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfcdef8ad3a6e7144ba8488d555f41e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &119298389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119298381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 741a33fe55ca0a0459f4469a7f8e024e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
 --- !u!114 &119298390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +245,6 @@ MonoBehaviour:
     RawGuidValue: b361390985194b6f80418f6806279651
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 119298389}
   - {fileID: 119298390}
   SimulationBehaviours: []
 --- !u!1 &144118350
