@@ -4,7 +4,7 @@ namespace Born.Session
 {
     public enum Chapter
     {
-        Hanger,
+        Hangar,
         Runway,
         EngineRoom,
         Garage

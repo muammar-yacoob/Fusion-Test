@@ -14,7 +14,7 @@ namespace Born.Player
     {
         public static event Action<MessageData> OnPlayerJoined =  delegate{};
 
-        private Chapter _chapter = Chapter.Hanger;
+        private Chapter _chapter = Chapter.Hangar;
         private Lesson _lesson;
     
         public override void Spawned()

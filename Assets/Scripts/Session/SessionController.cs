@@ -11,7 +11,9 @@ namespace Born.Session
     {
         [Networked] public NetworkButtons ButtonsPrevious { get; set; }
 
-        private Chapter currentChapter = Chapter.Hanger;
+        private Chapter currentChapter = Chapter.Hangar;
+
+        
 
         public override void FixedUpdateNetwork()
         {

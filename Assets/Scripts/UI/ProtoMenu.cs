@@ -46,7 +46,7 @@ namespace Born.UI
             if (sessionName.IsNullOrEmpty()) return;
             if (GUI.Button(new Rect(10, 33, 120, 20), $"Start/Join {sessionName}"))
             {
-                StartSession(GameMode.AutoHostOrClient, Chapter.Hanger, Lesson.Intro);
+                StartSession(GameMode.AutoHostOrClient, Chapter.Hangar, Lesson.Intro);
             }
         }
 
@@ -89,7 +89,7 @@ namespace Born.UI
         {
             var customProps = new Dictionary<string, SessionProperty>()
             {
-                { nameof(Chapter), (int)Chapter.Hanger },
+                { nameof(Chapter), (int)Chapter.Hangar },
                 { nameof(Lesson), (int)Lesson.Intro }
             };
 
