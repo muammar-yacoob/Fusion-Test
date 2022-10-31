@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-    steps:
+    steps:       
       - name: Checkout code
         uses: actions/checkout@v3
-  
+     
       - name: Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
   
@@ -39,11 +39,17 @@ jobs:
             Library-build-
             Library-
   
-      - uses: webbertakken/unity-builder@v2
+      - uses: webbertakken/unity-builder@main
         with:
           targetPlatform: StandaloneWindows64
-  
+
+      - run: |
+        mkdir -p ${{ github.workspace }}/artifact
+        echo hello > ${{ github.workspace }}/artifact/world.txt
+        
       - uses: actions/upload-artifact@v3
         with:
-          name: build-StandaloneWindows64
-          path: build/StandaloneWindows64
+#          name: build-StandaloneWindows64
+#          path: build/StandaloneWindows64
+          name: ${{ env.name }}-name
+          path: ${{ github.workspace }}/artifact/**/*

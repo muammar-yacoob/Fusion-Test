@@ -10,16 +10,17 @@ jobs:
     uses: Muammar81/Fusion-Test/.github/workflows/check-unity-license.yml@main
     secrets: inherit
 
-  Test-Runner:
-    uses: Muammar81/Fusion-Test/.github/workflows/test-runner.yml@main
-    secrets: inherit
+# 
+#  Test-Runner:
+#    uses: Muammar81/Fusion-Test/.github/workflows/test-runner.yml@main
+#    secrets: inherit
 
   Build-Release:
-    needs: Test-Runner
+#    needs: Test-Runner
     uses: Muammar81/Fusion-Test/.github/workflows/release.yml@main
 
   Build-WebGL:
-    needs: Test-Runner
+#    needs: Test-Runner
     uses: Muammar81/Fusion-Test/.github/workflows/deploy-to-webgl.yml@main
     secrets: inherit
 
@@ -29,7 +30,7 @@ jobs:
     secrets: inherit
 
   Build-Windows:
-    needs: Test-Runner
+#    needs: Test-Runner
     uses: Muammar81/Fusion-Test/.github/workflows/deploy-to-windows64.yml@main
     secrets: inherit
 
