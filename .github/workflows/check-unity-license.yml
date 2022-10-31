@@ -1,9 +1,8 @@
 name: 2. Unity-License-Check ☑️
 on: [workflow_call, workflow_dispatch]
 
-#already inherits env vars from caller i.e. main.yml
-#env:
-#    UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+env:
+    UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
    checkLicense:
